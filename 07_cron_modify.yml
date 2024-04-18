@@ -1,0 +1,13 @@
+---
+
+- name: Modify Cron
+  hosts: all
+
+  tasks:
+  - name: Remove cron job
+    cron:
+      name: Run foo-bar script   #script name should be same as that of the cron job to be removed
+      state: absent
+      user: paul 
+     # if we want to disable instead of deleting,,,, disabled: true 
+

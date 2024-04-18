@@ -1,0 +1,16 @@
+---
+
+- name: Download files
+  hosts: all
+  
+  tasks:
+  - name: Download Files
+    get_url:
+      url: https://url/of/files/to/be/downloaded
+      dest: /tmp/path/to/destination_directory
+      owner: user_name
+      group: group_name
+      mode: u=rw,g=r,o=r
+
+
+

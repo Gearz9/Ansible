@@ -1,0 +1,20 @@
+---
+
+- name: Kill a process
+  hosts: all
+
+  tasks:
+  - name: Find a process and kill it
+
+  # ignore_error yes is used beacause what if the process is not running , in that case it will throww error of Failed
+
+    ignore_error: yes
+
+    # pgrep foo-bar  gives the process id(PID) 
+    # xargs kill- kil the process
+    shell:  "pgrep nginx | xargs kill"
+
+  - name: Start the service
+    service:
+      name: nginx
+      state: started

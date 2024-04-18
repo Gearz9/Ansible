@@ -1,0 +1,12 @@
+---
+
+- name: Set Password
+  hosts: all
+
+  tasks:
+  - name: Set Password
+    user: 
+      name: User_name
+      update_password: always
+      #password: abcd123  # this isn't hashed
+      password: "{{'abcd123' | password_hash('sha412')}}"

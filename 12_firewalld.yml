@@ -1,0 +1,18 @@
+---
+
+- name: Firewall changes
+  hosts: all
+  become: true    #this line make this file privileged one
+
+  tasks: 
+  - name: Enable a service in Firewalldd
+    firewalld:
+      port: 80/tcp  
+      permanent: True
+      state: enabled
+  
+  # we need to restart to see the changes
+  - name: Reload the firewalld
+    service:
+     name: firewalld
+     state: reloaded  

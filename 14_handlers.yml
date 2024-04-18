@@ -1,0 +1,35 @@
+---
+
+- name: Firewall changes
+  hosts: all
+  become: true    #this line make this file privileged one
+
+
+  # what if firewalld is already running
+  # we will still restart the service 
+  # we need to restart to see the changes only if we have done changes
+  # WHAT IF there are no any changes?
+  # there is no need to restart
+  # this can be handled by handlers
+
+
+
+  tasks: 
+  - name: Enable a service in Firewalldd
+    firewalld:
+      port: 80/tcp  
+      permanent: True
+      state: enabled
+    # notify should have same as that of the handler
+    # if the state is changed than only it will notify
+    notify:
+      - Reload firewalld     #name should be same as name
+
+
+
+  handlers:
+  - name: Reload firewalld
+    service:
+     name: firewalld
+     state: reloaded  
+

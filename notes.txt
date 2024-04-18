@@ -1,0 +1,77 @@
+
+1. **SSH Key Generation:**   
+   - Use `ssh-key` to specify a text file path to create a private key in that file and a corresponding public key in a new file.
+
+2. **Copying SSH Key:**
+   - Use `ssh-copy-id -i /path/to/public-ssh-key root@host_ip_address` to copy the SSH public key to the remote server.
+
+3. **Listing Tags in Playbook:**
+   - To list all tags in a playbook, run `ansible-playbook playbook-name --list-tags`.
+
+4. **Performing Tasks Using Tags:**
+   - Execute specific tasks within a playbook using tags with `ansible-playbook playbook-name -t tag-name`.
+
+5. **Privileged Tasks:**
+   - Use `become:true` to perform privileged tasks (e.g., root user). 
+   `--ask-become-pass` prompts for the privilege escalation password if necessary.
+
+6. **Ad Hoc Tasks:**
+   - Conduct ad hoc tasks with Ansible:
+     - Ping: `ansible localhost -m ping`
+     - Copying Files: `ansible 10.10.10.10 -m copy -a "src=/home/user/path dest=/tmp/script/destination/path mode=0777" -b --ask-become-pass`
+     - Restarting Servers: `ansible all -m service -a "name=nginx state=reloaded"`
+     - Running Scripts: `ansible all -m shell -a "/tmp/path/to/script"`
+     - Checking Free Space: `ansible all -m command -a "free -h"`
+     - Downloading Modules: `ansible all -m sudo -a "name=vim state=present"`
+
+7. **Creating Roles:**
+   - Initialize a new Ansible role using `ansible-galaxy init role-name`.
+
+
+
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+ssh-key : give the path of text file,
+          it will create a PRIVATE key int that file and a public key in new file
+
+ssh-copy-id -i /path/to/public-ssh-key root@host_ip_address   : to copy the key to the remote server
+
+#To list all tags in the playbook, run the following command
+ansible-playbook playbook-name --list-tags
+
+#to perform any one task in ansible we can use tags -t
+ansible-playbook playbook-name -t tag-name
+this will perform the task that have the tag name tag-name and
+
+
+
+
+we use become:true to perform privileged tasks (root user)
+
+--ask-become-pass is the flag added to ask password if the user have password
+
+
+# for doing ad hoc task with ansible
+
+        <hosts>      <module>  <arguments>                                                 become true
+ansible localhost   -m ping
+ansilbe 10.10.10.10 -m copy    -a "src=/home/user/path dest=/tmp/script/destination/path  mode=0777 "  -b   --ask-become-pass
+
+--Another example to restart the servers 
+ansible all -m service -a "name=nginx state=reloaded"
+
+-- Another example to run script on remote server
+ansible all -m shell -a "/tmp/path/to/script"
+
+-- example to check free space on remote server 
+ansible all -m command -a "free -h"
+
+-- to download module in remote server
+ansible all -m sudo -a "name=vim state=present"
+
+
+
+# to create Roles
+ansible-galaxy init role-name

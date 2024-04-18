@@ -1,0 +1,17 @@
+---
+
+# the below script is for creating new Users
+
+- name: User management
+  hosts: all
+
+  tasks:
+  - name: User Creation 
+    user:
+      name: Nick
+      comment: new user adding for QA team       #optional
+      shell: /bin/bash
+      gropus: QA, Management
+
+      state: absent    # to delete the user just provide name and state:absent
+      remove: yes      # to delete the files of the user

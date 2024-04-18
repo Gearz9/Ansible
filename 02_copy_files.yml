@@ -1,0 +1,13 @@
+---
+- name: Copying files to remote server
+  hosts: all
+
+  tasks :
+  - name: Copy Files
+    copy:
+      src: /path/to/the/local/machine/directory
+      dest: /path/to/remote/server/directory
+      backup: true
+      mode: ugo +rw
+      
+

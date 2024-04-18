@@ -1,0 +1,17 @@
+---
+- name: Run a script
+  hosts: all
+
+  tasks:
+  - name: Run Script
+    shell: /path/to/ScriptFolder/script.sh >> test.log  
+    # when we run a script and it has output we dont find in the terminal (the output )
+    # so instead we do logging of the output os the scripts
+    
+  # when we will run this playbook the files cahnges will be in the root directory
+  # but we want them to be in the the same /path/to/Scriptfolder to do this
+
+    args:
+      chdir: /path/to/Scriptfolder
+      creates: test.log  # if not present create the file
+    

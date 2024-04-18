@@ -1,0 +1,19 @@
+---
+
+- name: Cron Setup
+  hosts: all
+
+  tasks:
+  - name: Add cron job
+    cron:
+      name: Run foo-bar script
+      minute: 30
+      hour: 18
+      day: 15
+      month: "*"
+      weekday: "*"
+      user: TUSHAR
+      job: /path/to/cron/script.sh
+
+
+

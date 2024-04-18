@@ -1,0 +1,17 @@
+---
+- name : Install and start the service
+  hosts : localhost
+
+  tasks: 
+  - name: Insalling nginx
+    apt:
+      name: nginx
+      state : present
+    tags: i-nginx
+    
+  - name: starting the nginx service
+    service :
+      name: nginx
+      state: started
+      enabled: true
+    tags: ss-nginx

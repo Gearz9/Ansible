@@ -1,0 +1,37 @@
+---
+
+- name: User management
+  hosts: all
+
+  tasks:
+  - name: User Creation 
+    user:
+      name: "{{ item }}"
+      comment: new user adding for QA team       #optional
+      shell: /bin/bash
+      gropus: QA, Management
+
+      #state: absent    # to delete the user just provide name and state:absent
+      #remove: yes      # to delete the files of the user
+    loop:
+      - Raju
+      - Sham
+      - Baburao
+
+# ANOTHER Syntax
+
+- name : Install and start the service
+  hosts : localhost
+
+  vars:
+   - apps: [yum,httpd,vim,telnet]
+
+  tasks:
+  - name: Insalling nginx
+    apt:
+      name: "{{ item }}"
+      state : pr  esent
+    tags: i-nginx
+
+    with_items: " {{ apps }}"
+

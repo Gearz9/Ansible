@@ -1,0 +1,12 @@
+---
+- name: First Basic PlayBook
+  hosts: localhost
+
+  tasks: 
+  - name: Test connectivity
+    ping:
+  - name: "Print Output"
+    debug: msg="Alright!!"
+
+
+
