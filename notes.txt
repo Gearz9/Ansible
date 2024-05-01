@@ -1,6 +1,6 @@
 
 1. **SSH Key Generation:**   
-   - Use `ssh-key` to specify a text file path to create a private key in that file and a corresponding public key in a new file.
+   - Use `ssh-keygen` to specify a text file path to create a private key in that file and a corresponding public key in a new file.
 
 2. **Copying SSH Key:**
    - Use `ssh-copy-id -i /path/to/public-ssh-key root@host_ip_address` to copy the SSH public key to the remote server.
